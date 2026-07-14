@@ -62,10 +62,10 @@ h3 {
 
 .label {
   font-family: "IBM Plex Mono", monospace;
-  font-size: 0.66rem;
+  font-size: 0.82rem;
   font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   color: var(--accent);
   margin: 0;
 }
@@ -156,7 +156,7 @@ h3 {
 
 .hero-links a {
   font-family: "IBM Plex Mono", monospace;
-  font-size: 0.82rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   text-decoration: none;
