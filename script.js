@@ -59,3 +59,35 @@ window.addEventListener('load', () => {
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
+
+// Grain overlay
+(function () {
+  const size = 600;
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d');
+  const img = ctx.createImageData(size, size);
+  for (let i = 0; i < img.data.length; i += 4) {
+    const v = Math.floor(Math.random() * 255);
+    img.data[i]     = Math.min(255, v + 18);
+    img.data[i + 1] = Math.min(255, v + 8);
+    img.data[i + 2] = Math.max(0,   v - 22);
+    img.data[i + 3] = 255;
+  }
+  ctx.putImageData(img, 0, 0);
+
+  const grain = document.createElement('div');
+  grain.style.position = 'fixed';
+  grain.style.top = '0';
+  grain.style.left = '0';
+  grain.style.width = '100%';
+  grain.style.height = '100%';
+  grain.style.pointerEvents = 'none';
+  grain.style.zIndex = '9999';
+  grain.style.opacity = '0.05';
+  grain.style.backgroundImage = 'url(' + canvas.toDataURL() + ')';
+  grain.style.backgroundSize = size + 'px ' + size + 'px';
+  grain.style.backgroundRepeat = 'repeat';
+  document.body.appendChild(grain);
+}());

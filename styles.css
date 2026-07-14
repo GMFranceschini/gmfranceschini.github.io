@@ -22,6 +22,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+
 img { display: block; max-width: 100%; }
 
 /* ── Layout ───────────────────────────────────────────── */
@@ -170,6 +171,16 @@ h3 {
 
 .hero-portrait {
   margin: 0;
+  position: relative;
+}
+
+.hero-portrait::before {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  border: 1px solid var(--rule);
+  pointer-events: none;
 }
 
 .hero-portrait img {
@@ -362,11 +373,22 @@ h3 {
 .footer-row {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.62rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;
   color: var(--accent);
+}
+
+.ornament {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--text);
+  letter-spacing: 0;
+  text-transform: none;
+  user-select: none;
 }
 
 /* ── Reveal ───────────────────────────────────────────── */
