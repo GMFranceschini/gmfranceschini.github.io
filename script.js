@@ -60,34 +60,38 @@ window.addEventListener('load', () => {
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
 
-// Grain overlay
+// Grain overlay — inline SVG feTurbulence, works on all static hosts
 (function () {
-  const size = 600;
-  const canvas = document.createElement('canvas');
-  canvas.width = size;
-  canvas.height = size;
-  const ctx = canvas.getContext('2d');
-  const img = ctx.createImageData(size, size);
-  for (let i = 0; i < img.data.length; i += 4) {
-    const v = Math.floor(Math.random() * 255);
-    img.data[i]     = Math.min(255, v + 18);
-    img.data[i + 1] = Math.min(255, v + 8);
-    img.data[i + 2] = Math.max(0,   v - 22);
-    img.data[i + 3] = 255;
-  }
-  ctx.putImageData(img, 0, 0);
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;opacity:0.09';
 
-  const grain = document.createElement('div');
-  grain.style.position = 'fixed';
-  grain.style.top = '0';
-  grain.style.left = '0';
-  grain.style.width = '100%';
-  grain.style.height = '100%';
-  grain.style.pointerEvents = 'none';
-  grain.style.zIndex = '9999';
-  grain.style.opacity = '0.05';
-  grain.style.backgroundImage = 'url(' + canvas.toDataURL() + ')';
-  grain.style.backgroundSize = size + 'px ' + size + 'px';
-  grain.style.backgroundRepeat = 'repeat';
-  document.body.appendChild(grain);
+  const defs = document.createElementNS(ns, 'defs');
+  const filter = document.createElementNS(ns, 'filter');
+  filter.setAttribute('id', 'gmf-grain');
+
+  const turb = document.createElementNS(ns, 'feTurbulence');
+  turb.setAttribute('type', 'fractalNoise');
+  turb.setAttribute('baseFrequency', '0.38');
+  turb.setAttribute('numOctaves', '4');
+  turb.setAttribute('seed', '7');
+  turb.setAttribute('stitchTiles', 'stitch');
+
+  const warm = document.createElementNS(ns, 'feColorMatrix');
+  warm.setAttribute('type', 'matrix');
+  warm.setAttribute('values', '1.12 0 0 0 0.04  0 1.02 0 0 0  0 0 0.82 0 0  0 0 0 1 0');
+
+  filter.appendChild(turb);
+  filter.appendChild(warm);
+  defs.appendChild(filter);
+
+  const rect = document.createElementNS(ns, 'rect');
+  rect.setAttribute('width', '100%');
+  rect.setAttribute('height', '100%');
+  rect.setAttribute('filter', 'url(#gmf-grain)');
+
+  svg.appendChild(defs);
+  svg.appendChild(rect);
+  document.body.appendChild(svg);
 }());
