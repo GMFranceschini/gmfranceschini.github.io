@@ -26,7 +26,7 @@ img { display: block; max-width: 100%; }
 
 /* ── Layout ───────────────────────────────────────────── */
 .inner {
-  width: min(1020px, 90vw);
+  width: min(1120px, 94vw);
   margin: 0 auto;
 }
 
@@ -72,9 +72,9 @@ h3 {
 
 .hero-lead {
   margin: 1.4rem 0 0;
-  font-size: 1.05rem;
+  font-size: 1.22rem;
   color: var(--muted);
-  line-height: 1.65;
+  line-height: 1.6;
   max-width: 44ch;
 }
 
@@ -156,7 +156,7 @@ h3 {
 
 .hero-links a {
   font-family: "IBM Plex Mono", monospace;
-  font-size: 0.66rem;
+  font-size: 0.82rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   text-decoration: none;
