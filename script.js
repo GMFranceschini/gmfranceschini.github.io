@@ -60,3 +60,30 @@ window.addEventListener('load', () => {
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
 
+// Grain overlay — canvas element used directly as fixed overlay
+(function () {
+  const size = 800;
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d');
+  const img = ctx.createImageData(size, size);
+  for (let i = 0; i < img.data.length; i += 4) {
+    const v = Math.floor(Math.random() * 255);
+    img.data[i]     = Math.min(255, v + 18);
+    img.data[i + 1] = Math.min(255, v + 8);
+    img.data[i + 2] = Math.max(0,   v - 22);
+    img.data[i + 3] = 255;
+  }
+  ctx.putImageData(img, 0, 0);
+  canvas.style.position = 'fixed';
+  canvas.style.top = '0';
+  canvas.style.left = '0';
+  canvas.style.width = '100%';
+  canvas.style.height = '100%';
+  canvas.style.pointerEvents = 'none';
+  canvas.style.zIndex = '9999';
+  canvas.style.opacity = '0.05';
+  document.body.appendChild(canvas);
+}());
+
