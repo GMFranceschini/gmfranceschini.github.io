@@ -1,0 +1,316 @@
+% Compile with: xelatex cv_new.tex
+\documentclass[9.5pt, a4paper]{article}
+
+% ── Page ───────────────────────────────────────────────────────────
+\usepackage[top=14mm, bottom=14mm, left=15mm, right=15mm]{geometry}
+
+% ── Fonts ──────────────────────────────────────────────────────────
+\usepackage{fontspec}
+\usepackage{ebgaramond}
+\usepackage[sfdefault]{sourcesanspro}
+\usepackage{sourcecodepro}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ── Micro-typography ───────────────────────────────────────────────
+\usepackage{microtype}
+
+% ── Colors ─────────────────────────────────────────────────────────
+\usepackage[usenames,dvipsnames]{xcolor}
+\definecolor{bg}{HTML}{F5F3EE}
+\definecolor{fg}{HTML}{111010}
+\definecolor{mu}{HTML}{706860}
+\definecolor{ac}{HTML}{7A6B58}
+\definecolor{ru}{HTML}{DDD9D1}
+
+\usepackage{pagecolor}
+\pagecolor{bg}
+\color{fg}
+
+% ── Links ──────────────────────────────────────────────────────────
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ── Layout ─────────────────────────────────────────────────────────
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{calc}
+\usepackage{etoolbox}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
+\setlength{\tabcolsep}{0pt}
+
+\newlength{\lw}\setlength{\lw}{2.4cm}
+\newlength{\sw}\setlength{\sw}{7mm}
+\newlength{\cw}\setlength{\cw}{\dimexpr\textwidth-\lw-\sw\relax}
+
+% ── Typography helpers ─────────────────────────────────────────────
+
+\newcommand{\seclabel}[1]{%
+  \fontsize{5.5pt}{7pt}\selectfont%
+  \texttt{\textcolor{ac}{\MakeUppercase{#1}}}%
+}
+
+\newcommand{\edate}[1]{%
+  \fontsize{7pt}{8pt}\selectfont%
+  \texttt{\textcolor{ac}{\MakeUppercase{#1}}}%
+}
+
+% Rule between sections (inside longtable, hence \noalign)
+\newcommand{\secrule}{%
+  \noalign{\vspace{4pt}{\color{ru}\hrule height 0.4pt}\vspace{3pt}}%
+}
+
+% ── Entry: all line breaks are \newline, not \\  ───────────────────
+% #1 date  #2 title  #3 org  #4 note
+% The \\ that terminates the longtable row is written OUTSIDE this macro.
+\newcommand{\cventry}[4]{%
+  \noindent
+  \begin{tabular*}{\linewidth}{@{}l@{\extracolsep{\fill}}r@{}}
+    {\fontsize{9.5pt}{11pt}\selectfont\bfseries #2} & \edate{#1}
+  \end{tabular*}%
+  \ifblank{#3}{}{%
+    \newline
+    {\fontsize{8pt}{9.5pt}\selectfont\textcolor{mu}{#3}}%
+  }%
+  \ifblank{#4}{}{%
+    \newline
+    {\fontsize{7.5pt}{9pt}\selectfont\textit{\textcolor{mu}{#4}}}%
+  }%
+}
+
+% ── Publication ────────────────────────────────────────────────────
+% #1 authors  #2 title  #3 venue
+\newcommand{\cvpub}[3]{%
+  \edate{#3}\newline
+  {\fontsize{8.5pt}{10.5pt}\selectfont\bfseries #2}\newline
+  {\fontsize{8pt}{10pt}\selectfont\textcolor{mu}{#1}}%
+}
+
+% Highlight self in author lists
+\newcommand{\me}[1]{{\bfseries\textcolor{fg}{#1}}}
+
+% ── Document ───────────────────────────────────────────────────────
+\begin{document}
+
+% Header
+{\fontsize{28pt}{30pt}\selectfont\rmfamily Gian Marco Franceschini}
+
+\vspace{5pt}
+{\fontsize{6.5pt}{8pt}\selectfont\texttt{\textcolor{ac}{%
+  POSTDOCTORAL RESEARCHER · COMPUTATIONAL BIOLOGY%
+}}}
+
+\vspace{5pt}
+{\fontsize{8pt}{10pt}\selectfont\textcolor{mu}{%
+  \href{mailto:gianmarco.franceschini@unil.ch}{gianmarco.franceschini@unil.ch}%
+  \enspace·\enspace University of Lausanne, Switzerland%
+  \enspace·\enspace \href{https://github.com/gmfranceschini}{github.com/gmfranceschini}%
+  \enspace·\enspace ORCID~0000-0002-7391-3535%
+}}
+
+\vspace{3pt}
+
+% ── Main table ─────────────────────────────────────────────────────
+\begin{longtable}{@{}p{\lw}@{\hspace{\sw}}p{\cw}@{}}
+
+% ─ Experience ──────────────────────────────────────────────────────
+\secrule
+\seclabel{Experience} &
+  \cventry{Nov 2023 – Present}{Postdoctoral Researcher}%
+    {University of Lausanne — Lab.\ of Computational System Oncology, DBC · PI: Prof.\ Giovanni Ciriello · Lausanne, Switzerland}%
+    {Method development and analysis of chromatin compartments in cancer evolution through Hi-C and single-cell Hi-C.}
+\\[4pt]
+& \cventry{Jan – Oct 2023}{Postdoctoral Researcher}%
+    {University of Trento — Lab.\ of Computational and Functional Oncology, CIBIO · PI: Prof.\ Francesca Demichelis · Trento, Italy}%
+    {Detecting neuroendocrine prostate cancer through cell-free DNA methylation profiling.}
+\\[4pt]
+& \cventry{Nov 2018 – Jan 2023}{PhD Candidate in Biomolecular Sciences}%
+    {University of Trento — Lab.\ of Computational and Functional Oncology, CIBIO · PI: Prof.\ Francesca Demichelis · Trento, Italy}%
+    {Thesis: \textit{The DNA methylation landscape of metastatic prostate cancer: from characterization to liquid biopsy applications.}}
+\\[4pt]
+& \cventry{Nov 2021 – Feb 2022}{Visiting Researcher — EMBO Exchange Grant}%
+    {University of Lausanne — Lab.\ of Computational System Oncology · PI: Prof.\ Giovanni Ciriello · Lausanne, Switzerland}%
+    {Chromatin compartments in colorectal cancer cell lines under pharmacological or genetic perturbation of the DNA methylation machinery.}
+\\[4pt]
+& \cventry{Sept 2017 – Sept 2018}{Student Assistant — RNA-seq Data Analysis}%
+    {Lab.\ of Experimental Cancer Biology, CIBIO · PI: Prof.\ Maria Caterina Mione · Trento, Italy}%
+    {RNA-seq data analysis from zebrafish disease models of cancer.}
+\\[4pt]
+& \cventry{Nov 2017 – Jul 2018}{Tutor — Bachelor Courses in Biomolecular Sciences}%
+    {CIBIO, University of Trento · Trento, Italy}%
+    {Computer Science (40 hrs): Unix, command line, Python.
+     Computational Biology (20 hrs): sequencing analysis and biological data exploration.}
+\\[4pt]
+
+% ─ Education ───────────────────────────────────────────────────────
+\secrule
+\seclabel{Education} &
+  \cventry{Nov 2018 – Jan 2023}%
+    {PhD \textit{cum Laude} — Biomolecular Sciences, Computational Biology track}%
+    {CIBIO, University of Trento · Trento, Italy}{}
+\\[4pt]
+& \cventry{Sept 2016 – Oct 2018}%
+    {MSc \textit{cum Laude} — Quantitative and Computational Biology · 110/110}%
+    {CIBIO, University of Trento · Trento, Italy}%
+    {Internship: Mutual exclusivity and synthetic lethality in cancer DNA methylation patterns. PI: Prof.\ Francesca Demichelis.}
+\\[4pt]
+& \cventry{Sept 2013 – Jul 2016}%
+    {BSc \textit{cum Laude} — Biomolecular Science and Technologies · 110/110}%
+    {CIBIO, University of Trento · Trento, Italy · GPA 29.5/30}%
+    {Internship: Cas9 delivery through HIV-1 derived Viral Like Particles. PI: Prof.\ Anna Cereseto.}
+\\[4pt]
+& \cventry{2008 – 2013}{Liceo Scientifico · 100/100}%
+    {ISISS G.\ Verdi · Valdobbiadene, Italy}{}
+\\[4pt]
+
+% ─ Publications ────────────────────────────────────────────────────
+\secrule
+\seclabel{Publications} &
+  \cvpub{P Li*, A Hatos*, M Petrovic, \me{GM Franceschini}, L Nanni, D Tavernari, G Ciriello}%
+    {TADShop: systematic benchmarking and identification of topologically associating domains}%
+    {Nature Methods · 2026}
+\\[3pt]
+& \cvpub{Y Liu, \me{GM Franceschini}, Y Zhang, E Oricchio, G Ciriello}%
+    {HaploC-tools reveal haplotype-specific chromosome conformation and chromatin states}%
+    {Nature Commun.\ · 2026}
+\\[3pt]
+& \cvpub{M Paoli, F Galardi, A Nardone, C Biagioni, D Romagnoli, S Di Donato, \me{GM Franceschini}, L Livraghi, M Pestrin, G Sanna, E Risi, I Migliaccio, E Moretti, L Malorni, L Biganzoli, F Demichelis, M Benelli}%
+    {A computational framework for sensitive tumor detection and accurate subtyping using shallow cell-free DNA methylome sequencing}%
+    {Genome Medicine · 2026}
+\\[3pt]
+& \cvpub{\me{GM Franceschini}, O Quaini, K Mizuno, F Orlando, Y Ciani, SY Ku, M Sigouros, E Rothmann, A Alonso, M Benelli, C Nardella, J Auh, D Freeman, B Hanratty, M Adil, O Elemento, ST Tagawa, F Feng, O Caffo, C Buttigliero, U Basso, P Nelson, E Corey, MC Haffner, A Aparicio, F Demichelis, H Beltran}%
+    {Non-invasive detection of neuroendocrine prostate cancer through targeted cell-free DNA methylation}%
+    {Cancer Discovery · 2024}
+\\[3pt]
+& \cvpub{D Romagnoli, A Nardone, F Galardi, M Paoli, F De Luca, C Biagioni, \me{GM Franceschini}, M Pestrin, G Sanna, E Moretti, F Demichelis, I Migliaccio, L Biganzoli, L Malorni, M Benelli}%
+    {MIMESIS: minimal DNA-methylation signatures to quantify and classify tumor signals in tissue and cell-free DNA samples}%
+    {Brief.\ Bioinform.\ · 2023}
+\\[3pt]
+& \cvpub{M Benelli, \me{GM Franceschini}*, A Magi, D Romagnoli, C Biagioni, I Migliaccio, L Malorni, A Di Leo, F Demichelis}%
+    {Cancer methylomes characterization enabled by Rocker-meth}%
+    {Commun.\ Biology · 2021}
+\\[3pt]
+& \cvpub{Y Ciani, T Fedrizzi, D Prandi, F Lorenzin, A Locallo, P Gasperini, \me{GM Franceschini}, M Benelli, O Elemento, LL Fava, A Inga, F Demichelis}%
+    {Allele-specific genomic data elucidate the role of somatic gain and copy-number neutral loss of heterozygosity in cancer}%
+    {Cell Systems · 2021}
+\\[3pt]
+& \cvpub{H Beltran, A Romanel, V Conteduca, N Casiraghi, M Sigouros, \me{GM Franceschini}, F Orlando, T Fedrizzi, SY Ku, E Dann, A Alonso, JM Mosquera, A Sboner, J Xiang, O Elemento, DM Nanus, ST Tagawa, M Benelli, F Demichelis}%
+    {Circulating tumor DNA profile recognizes transformation to castration-resistant neuroendocrine prostate cancer}%
+    {J.\ Clin.\ Invest.\ · 2020}
+\\[3pt]
+& \cvpub{A Wu, P Cremaschi, D Wetterskog, V Conteduca, \me{GM Franceschini}, D Kleftogiannis, A Jayaram, S Sandhu, SQ Wong, M Benelli, S Salvi, G Gurioli, A Feber, M Buongermino Pereira, A Wingate, E Gonzalez-Billalabeitia, U De Giorgi, F Demichelis, S Lise, G Attard}%
+    {Genome-wide plasma DNA methylation features of metastatic prostate cancer}%
+    {J.\ Clin.\ Invest.\ · 2020}
+\\[3pt]
+& \cvpub{C Montagna, G Petris, A Casini, G Maule, \me{GM Franceschini}, I Zanella, L Conti, F Arnoldi, OR Burrone, L Zentilin, S Zacchigna, M Giacca, A Cereseto}%
+    {VSV-G enveloped vesicles for traceless delivery of CRISPR-Cas9}%
+    {Mol.\ Ther.\ Nucleic Acids · 2018}
+\\[4pt]
+
+% ─ Grants ──────────────────────────────────────────────────────────
+\secrule
+\seclabel{Grants \& Fellowships} &
+  \cventry{Nov 2025}{Novartis Freenovation Grant · CHF~198,000}%
+    {\textit{Multiscale chromatin blueprints to decipher and forecast epigenetic perturbations for cancer therapy}}{}
+\\[4pt]
+& \cventry{Jan 2022}{EMBO Scientific Exchange Grant \#9295 · CHF~11,500}%
+    {Research visiting, University of Lausanne}{}
+\\[4pt]
+& \cventry{Nov 2021}{Erasmus Scholarship}%
+    {Research visiting, University of Lausanne}{}
+\\[4pt]
+& \cventry{Jul 2018}{CSAMA 2018 — Bioinformatics Summer School}%
+    {Selected among 5 international students for a full scholarship}{}
+\\[4pt]
+& \cventry{Nov 2017}{Travel Grant — Vienna Biocenter Continuum Symposium}%
+    {Selected among 11 students from across Europe}{}
+\\[4pt]
+& \cventry{Summer 2017}{Scholarship — Club Alpbach Trentino}%
+    {European Forum Alpbach}{}
+\\[4pt]
+
+% ─ Awards ──────────────────────────────────────────────────────────
+\secrule
+\seclabel{Awards} &
+  \cventry{Nov 2024}{S.O.S Onlus — Honorable Mention}%
+    {For scientific results in translational oncology obtained during PhD}{}
+\\[4pt]
+& \cventry{Sept 2019}{Fondazione 7 Ville — Scholarship Award}%
+    {For excellent results during Master of Science degree}{}
+\\[4pt]
+& \cventry{Fall 2017}{Merit Award — University of Trento}%
+    {For completing Bachelor's degree with a high GPA on the first available session}{}
+\\[4pt]
+& \cventry{Sept 2017}{Fondazione 7 Ville — Scholarship Award}%
+    {For excellent results during Bachelor of Science degree}{}
+\\[4pt]
+& \cventry{2013 – 2018}{Robert Gallo e Renzo Girola ONLUS — Scholarship}{}{}
+\\[4pt]
+& \cventry{2013}{Protti Foundation — Scholarship}%
+    {For the outstanding high school path}{}
+\\[4pt]
+
+% ─ Patent ──────────────────────────────────────────────────────────
+\secrule
+\seclabel{Patent} &
+  \cventry{2021}{Detection of neuroendocrine prostate cancer through cell-free DNA methylation sequencing}%
+    {Co-inventor · International Publication Number: WO~2021/162981~A2}{}
+\\[4pt]
+
+% ─ Programming ─────────────────────────────────────────────────────
+\secrule
+\seclabel{Programming} &
+  \noindent{\fontsize{9.5pt}{11pt}\selectfont\bfseries R}\enspace
+  {\fontsize{8.5pt}{10.5pt}\selectfont\textcolor{mu}{Advanced — package development, Bioconductor ecosystem, machine learning, statistical learning}}
+\\[4pt]
+& {\fontsize{9.5pt}{11pt}\selectfont\bfseries Python}\enspace
+  {\fontsize{8.5pt}{10.5pt}\selectfont\textcolor{mu}{pandas, numpy, scipy, BioPython, scikit-learn, TensorFlow, Keras, PyTorch}}
+\\[4pt]
+& {\fontsize{9.5pt}{11pt}\selectfont\bfseries Bash}\enspace
+  {\fontsize{8.5pt}{10.5pt}\selectfont\textcolor{mu}{Pipeline management and scripting}}
+\\[4pt]
+& {\fontsize{9.5pt}{11pt}\selectfont\bfseries Design}\enspace
+  {\fontsize{8.5pt}{10.5pt}\selectfont\textcolor{mu}{Adobe suite, Affinity Designer, Inkscape, Procreate}}
+\\[4pt]
+& {\fontsize{9.5pt}{11pt}\selectfont\bfseries Other}\enspace
+  {\fontsize{8.5pt}{10.5pt}\selectfont\textcolor{mu}{Git, \LaTeX, C\# (Unity), Octave/Matlab, C — Ubuntu, Windows}}
+\\[4pt]
+
+% ─ Languages ───────────────────────────────────────────────────────
+\secrule
+\seclabel{Languages} &
+  {\fontsize{9pt}{11pt}\selectfont\bfseries Italian}\enspace
+  {\fontsize{8.5pt}{10pt}\selectfont\textcolor{mu}{— mother tongue}}\qquad
+  {\fontsize{9pt}{11pt}\selectfont\bfseries English}\enspace
+  {\fontsize{8.5pt}{10pt}\selectfont\textcolor{mu}{— C1}}
+\\[4pt]
+
+% ─ Outreach ────────────────────────────────────────────────────────
+\secrule
+\seclabel{Outreach \& Leadership} &
+  \cventry{Aug 2020}{Telegram Educational Contest — Award Winner}%
+    {Placed 7th among over 7,000 entries with an educational quiz on cancer for mobile platforms}{}
+\\[4pt]
+& \cventry{Mar 2016 – Sept 2017}{Science Communication — \textit{La medicina in uno scatto}}%
+    {Italian website with more than 100k followers promoting medical and scientific awareness}{}
+\\[4pt]
+& \cventry{Aug 2018}{Seminar Assistant — Precision Medicine and Its Impact on Our Society}%
+    {EFA 2020, Alpbach, Austria}%
+    {Drafted and proposed a one-week seminar introducing future policy makers to precision medicine.}
+\\[4pt]
+& \cventry{Aug 2017 – Nov 2018}{Board Member \& IT Manager — Club Alpbach Trentino}%
+    {Fundraising for scholarships, event planning, and team coordination}{}
+\\[4pt]
+& \cventry{Nov 2016 – Nov 2018}{Student Representative — Center of Integrative Biology, UniTN}{}{}
+\\[4pt]
+& \cventry{Feb 2019 – Jan 2020}{Volunteering — VolontariInStrada}%
+    {Weekly gatherings assisting homeless individuals}{}
+\\[4pt]
+
+\end{longtable}
+
+\end{document}

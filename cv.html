@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CV — Gian Marco Franceschini</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=Karla:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:     #F5F3EE;
+      --text:   #111010;
+      --muted:  #706860;
+      --accent: #7A6B58;
+      --rule:   #DDD9D1;
+    }
+
+    @page {
+      size: A4;
+      margin: 18mm 18mm 18mm 18mm;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { background: #ccc9c2; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Karla", sans-serif;
+      font-size: 9pt;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      max-width: 210mm;
+      margin: 2rem auto;
+      padding: 18mm 18mm 18mm 18mm;
+    }
+
+    /* ── Header ─────────────────────────────────── */
+    .cv-header {
+      padding-bottom: 1.1rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 0;
+    }
+
+    .cv-name {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 32pt;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .cv-subtitle {
+      margin-top: 0.45rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 6.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--accent);
+    }
+
+    .cv-meta {
+      margin-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.2rem 1.6rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 6.5pt;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+
+    .cv-meta a { color: inherit; text-decoration: none; }
+
+    /* ── Section layout ──────────────────────────── */
+    .cv-section {
+      display: grid;
+      grid-template-columns: 5.6rem 1fr;
+      gap: 0 1.8rem;
+      border-top: 1px solid var(--rule);
+      padding: 0.85rem 0;
+      align-items: start;
+    }
+
+    .sec-label {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 6pt;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      padding-top: 0.2rem;
+      line-height: 1.3;
+    }
+
+    .sec-body { }
+
+    /* ── Generic entry ───────────────────────────── */
+    .entry {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0 1rem;
+      margin-bottom: 0.65rem;
+      align-items: start;
+    }
+
+    .entry:last-child { margin-bottom: 0; }
+
+    .entry-title {
+      font-size: 9pt;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.35;
+    }
+
+    .entry-org {
+      font-size: 8.5pt;
+      color: var(--muted);
+      margin-top: 0.08rem;
+      line-height: 1.4;
+    }
+
+    .entry-note {
+      font-size: 8pt;
+      color: var(--muted);
+      margin-top: 0.2rem;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    .entry-date {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 6.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      white-space: nowrap;
+      text-align: right;
+      padding-top: 0.25rem;
+      flex-shrink: 0;
+    }
+
+    /* ── Publications ────────────────────────────── */
+    .pub-list { list-style: none; }
+
+    .pub-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.05rem 1rem;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: start;
+    }
+
+    .pub-item:first-child { padding-top: 0; }
+    .pub-item:last-child  { border-bottom: none; padding-bottom: 0; }
+
+    .pub-authors {
+      font-size: 7.8pt;
+      color: var(--muted);
+      line-height: 1.4;
+      grid-column: 1;
+    }
+
+    .pub-authors strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .pub-title {
+      font-size: 8.5pt;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.35;
+      margin-top: 0.12rem;
+      grid-column: 1;
+    }
+
+    .pub-venue {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 6pt;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      white-space: nowrap;
+      text-align: right;
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      align-self: center;
+      padding-top: 0.1rem;
+    }
+
+    /* ── Skills ──────────────────────────────────── */
+    .skill-row {
+      display: grid;
+      grid-template-columns: 3.5rem 1fr;
+      gap: 0.3rem 0.8rem;
+      margin-bottom: 0.3rem;
+      align-items: baseline;
+    }
+
+    .skill-row:last-child { margin-bottom: 0; }
+
+    .skill-name {
+      font-weight: 500;
+      color: var(--text);
+      font-size: 8.5pt;
+    }
+
+    .skill-desc {
+      font-size: 8.5pt;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ── Tag row ─────────────────────────────────── */
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 1.4rem;
+    }
+
+    .tag-row span {
+      font-size: 8.5pt;
+      color: var(--muted);
+    }
+
+    /* ── Print ───────────────────────────────────── */
+    @media print {
+      html  { background: none; }
+      body  { margin: 0; padding: 18mm 18mm 18mm 18mm; max-width: none; }
+      .cv-section { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="cv-header">
+    <div class="cv-name">Gian Marco Franceschini</div>
+    <p class="cv-subtitle">Postdoctoral Researcher · Computational Biology</p>
+    <div class="cv-meta">
+      <a href="mailto:gianmarco.franceschini@unil.ch">gianmarco.franceschini@unil.ch</a>
+      <span>University of Lausanne · Switzerland</span>
+      <a href="https://github.com/gmfranceschini">github.com/gmfranceschini</a>
+      <span>ORCID 0000-0002-7391-3535</span>
+    </div>
+  </header>
+
+  <!-- Experience -->
+  <section class="cv-section">
+    <p class="sec-label">Experience</p>
+    <div class="sec-body">
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Postdoctoral Researcher</div>
+          <div class="entry-org">University of Lausanne — Lab. of Computational System Oncology, DBC<br>PI: Prof. Giovanni Ciriello · Lausanne, Switzerland</div>
+          <div class="entry-note">Method development and analysis of chromatin compartments in cancer evolution through Hi-C and single-cell Hi-C.</div>
+        </div>
+        <div class="entry-date">Nov 2023 – Present</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Postdoctoral Researcher</div>
+          <div class="entry-org">University of Trento — Lab. of Computational and Functional Oncology, CIBIO<br>PI: Prof. Francesca Demichelis · Trento, Italy</div>
+          <div class="entry-note">Detecting neuroendocrine prostate cancer through cell-free DNA methylation profiling.</div>
+        </div>
+        <div class="entry-date">Jan – Oct 2023</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">PhD Candidate in Biomolecular Sciences</div>
+          <div class="entry-org">University of Trento — Lab. of Computational and Functional Oncology, CIBIO<br>PI: Prof. Francesca Demichelis · Trento, Italy</div>
+          <div class="entry-note">Thesis: <em>The DNA methylation landscape of metastatic prostate cancer: from characterization to liquid biopsy applications.</em></div>
+        </div>
+        <div class="entry-date">Nov 2018 – Jan 2023</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Visiting Researcher — EMBO Exchange Grant</div>
+          <div class="entry-org">University of Lausanne — Lab. of Computational System Oncology, DBC<br>PI: Prof. Giovanni Ciriello · Lausanne, Switzerland</div>
+          <div class="entry-note">Chromatin compartments in colorectal cancer cell lines under pharmacological or genetic perturbation of the DNA methylation machinery.</div>
+        </div>
+        <div class="entry-date">Nov 2021 – Feb 2022</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">MSc Student Intern Co-supervisor (×3)</div>
+          <div class="entry-org">CIBIO, University of Trento · Trento, Italy</div>
+          <div class="entry-note">DNA methylation profiles in solid tumors, liquid biopsy applications, and epigenetic instability.</div>
+        </div>
+        <div class="entry-date">2020 – 2023</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Student Assistant — RNA-seq Data Analysis</div>
+          <div class="entry-org">Lab. of Experimental Cancer Biology, CIBIO · PI: Prof. Maria Caterina Mione · Trento, Italy</div>
+          <div class="entry-note">Data analysis on RNA-seq data from zebrafish disease models of cancer.</div>
+        </div>
+        <div class="entry-date">Sept 2017 – Sept 2018</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Tutor — Bachelor Courses</div>
+          <div class="entry-org">CIBIO, University of Trento · Trento, Italy</div>
+          <div class="entry-note">Computer Science (40 hrs): Unix systems, command line, Python. Computational Biology (20 hrs): sequencing analysis and biological data exploration.</div>
+        </div>
+        <div class="entry-date">Nov 2017 – Jul 2018</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="cv-section">
+    <p class="sec-label">Education</p>
+    <div class="sec-body">
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">PhD cum Laude — Biomolecular Sciences, Computational Biology track</div>
+          <div class="entry-org">CIBIO, University of Trento · Trento, Italy</div>
+        </div>
+        <div class="entry-date">Nov 2018 – Jan 2023</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">MSc cum Laude — Quantitative and Computational Biology · 110/110</div>
+          <div class="entry-org">CIBIO, University of Trento · Trento, Italy</div>
+          <div class="entry-note">Internship: Mutual exclusivity and synthetic lethality in cancer DNA methylation patterns. PI: Prof. Francesca Demichelis.</div>
+        </div>
+        <div class="entry-date">Sept 2016 – Oct 2018</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">BSc cum Laude — Biomolecular Science and Technologies · 110/110</div>
+          <div class="entry-org">CIBIO, University of Trento · Trento, Italy · GPA 29.5/30</div>
+          <div class="entry-note">Internship: Cas9 delivery through HIV-1 derived Viral Like Particles. PI: Prof. Anna Cereseto.</div>
+        </div>
+        <div class="entry-date">Sept 2013 – Jul 2016</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Liceo Scientifico · 100/100</div>
+          <div class="entry-org">ISISS G. Verdi · Valdobbiadene, Italy</div>
+        </div>
+        <div class="entry-date">2008 – 2013</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Publications -->
+  <section class="cv-section">
+    <p class="sec-label">Publications</p>
+    <div class="sec-body">
+      <ul class="pub-list">
+
+        <li class="pub-item">
+          <span class="pub-authors">P Li*, A Hatos*, M Petrovic, <strong>GM Franceschini</strong>, L Nanni, D Tavernari, G Ciriello</span>
+          <span class="pub-venue">Nature Methods<br>2026</span>
+          <span class="pub-title">TADShop: systematic benchmarking and identification of topologically associating domains</span>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-authors">Y Liu, <strong>GM Franceschini</strong>, Y Zhang, E Oricchio, G Ciriello</span>
+          <span class="pub-venue">Nature Commun.<br>2026</span>
+          <span class="pub-title">HaploC-tools reveal haplotype-specific chromosome conformation and chromatin states</span>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-authors">M Paoli, F Galardi, A Nardone, C Biagioni, D Romagnoli, S Di Donato, <strong>GM Franceschini</strong>, L Livraghi, M Pestrin, G Sanna, E Risi, I Migliaccio, E Moretti, L Malorni, L Biganzoli, F Demichelis, M Benelli</span>
+          <span class="pub-venue">Genome Medicine<br>2026</span>
+          <span class="pub-title">A computational framework for sensitive tumor detection and accurate subtyping using shallow cell-free DNA methylome sequencing</span>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-authors"><strong>GM Franceschini</strong>, O Quaini, K Mizuno, F Orlando, Y Ciani, SY Ku, M Sigouros, E Rothmann, A Alonso, M Benelli, C Nardella, J Auh, D Freeman, B Hanratty, M Adil, O Elemento, ST Tagawa, F Feng, O Caffo, C Buttigliero, U Basso, P Nelson, E Corey, MC Haffner, A Aparicio, F Demichelis, H Beltran</span>
+          <span class="pub-venue">Cancer Discovery<br>2024</span>
+          <span class="pub-title">Non-invasive detection of neuroendocrine prostate cancer through targeted cell-free DNA methylation</span>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-authors">D Romagnoli, A Nardone, F Galardi, M Paoli, F De Luca, C Biagioni, <strong>GM Franceschini</strong>, M Pestrin, G Sanna, E Moretti, F Demichelis, I Migliaccio, L Biganzoli, L Malorni, M Benelli</span>
+          <span class="pub-venue">Brief. Bioinform.<br>2023</span>
+          <span class="pub-title">MIMESIS: minimal DNA-methylation signatures to quantify and classify tumor signals in tissue and cell-free DNA samples</span>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-authors">M Benelli, <strong>GM Franceschini*</strong>, A Magi, D Romagnoli, C Biagioni, I Migliaccio, L Malorni, A Di Leo, F Demichelis</span>
+          <span class="pub-venue">Commun. Biology<br>2021</span>
+          <span class="pub-title">Cancer methylomes characterization enabled by Rocker-meth</span>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-authors">Y Ciani, T Fedrizzi, D Prandi, F Lorenzin, A Locallo, P Gasperini, <strong>GM Franceschini</strong>, M Benelli, O Elemento, LL Fava, A Inga, F Demichelis</span>
+          <span class="pub-venue">Cell Systems<br>2021</span>
+          <span class="pub-title">Allele-specific genomic data elucidate the role of somatic gain and copy-number neutral loss of heterozygosity in cancer</span>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-authors">H Beltran, A Romanel, V Conteduca, N Casiraghi, M Sigouros, <strong>GM Franceschini</strong>, F Orlando, T Fedrizzi, SY Ku, E Dann, A Alonso, JM Mosquera, A Sboner, J Xiang, O Elemento, DM Nanus, ST Tagawa, M Benelli, F Demichelis</span>
+          <span class="pub-venue">J. Clin. Invest.<br>2020</span>
+          <span class="pub-title">Circulating tumor DNA profile recognizes transformation to castration-resistant neuroendocrine prostate cancer</span>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-authors">A Wu, P Cremaschi, D Wetterskog, V Conteduca, <strong>GM Franceschini</strong>, D Kleftogiannis, A Jayaram, S Sandhu, SQ Wong, M Benelli, S Salvi, G Gurioli, A Feber, M Buongermino Pereira, A Wingate, E Gonzalez-Billalabeitia, U De Giorgi, F Demichelis, S Lise, G Attard</span>
+          <span class="pub-venue">J. Clin. Invest.<br>2020</span>
+          <span class="pub-title">Genome-wide plasma DNA methylation features of metastatic prostate cancer</span>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-authors">C Montagna, G Petris, A Casini, G Maule, <strong>GM Franceschini</strong>, I Zanella, L Conti, F Arnoldi, OR Burrone, L Zentilin, S Zacchigna, M Giacca, A Cereseto</span>
+          <span class="pub-venue">Mol. Ther.<br>Nucleic Acids · 2018</span>
+          <span class="pub-title">VSV-G enveloped vesicles for traceless delivery of CRISPR-Cas9</span>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- Grants -->
+  <section class="cv-section">
+    <p class="sec-label">Grants &amp;<br>Fellowships</p>
+    <div class="sec-body">
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Novartis Freenovation Grant · 198,000 CHF</div>
+          <div class="entry-org"><em>Multiscale chromatin blueprints to decipher and forecast epigenetic perturbations for cancer therapy</em></div>
+        </div>
+        <div class="entry-date">Nov 2025</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">EMBO Scientific Exchange Grant #9295 · 11,500 CHF</div>
+          <div class="entry-org">Research visiting at University of Lausanne, Switzerland</div>
+        </div>
+        <div class="entry-date">Jan 2022</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Erasmus Scholarship</div>
+          <div class="entry-org">Research visiting at University of Lausanne, Switzerland</div>
+        </div>
+        <div class="entry-date">Nov 2021</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">CSAMA 2018 — Bioinformatics Summer School</div>
+          <div class="entry-org">Selected among 5 international students for a full scholarship</div>
+        </div>
+        <div class="entry-date">Jul 2018</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Travel Grant — Vienna Biocenter Continuum Symposium</div>
+          <div class="entry-org">Selected among 11 students from across Europe</div>
+        </div>
+        <div class="entry-date">Nov 2017</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Scholarship — Club Alpbach Trentino</div>
+          <div class="entry-org">European Forum Alpbach</div>
+        </div>
+        <div class="entry-date">Summer 2017</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Awards -->
+  <section class="cv-section">
+    <p class="sec-label">Awards</p>
+    <div class="sec-body">
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">S.O.S Onlus — Honorable Mention</div>
+          <div class="entry-org">For scientific results in translational oncology obtained during PhD</div>
+        </div>
+        <div class="entry-date">Nov 2024</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Fondazione 7 Ville — Scholarship Award</div>
+          <div class="entry-org">For excellent results during Master of Science degree</div>
+        </div>
+        <div class="entry-date">Sept 2019</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Merit Award — University of Trento</div>
+          <div class="entry-org">For completing Bachelor's degree with a high GPA on the first available session</div>
+        </div>
+        <div class="entry-date">Fall 2017</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Fondazione 7 Ville — Scholarship Award</div>
+          <div class="entry-org">For excellent results during Bachelor of Science degree</div>
+        </div>
+        <div class="entry-date">Sept 2017</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Robert Gallo e Renzo Girola ONLUS — Scholarship</div>
+        </div>
+        <div class="entry-date">2013 – 2018</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Protti Foundation — Scholarship</div>
+          <div class="entry-org">For the outstanding high school path</div>
+        </div>
+        <div class="entry-date">2013</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Patents -->
+  <section class="cv-section">
+    <p class="sec-label">Patents</p>
+    <div class="sec-body">
+      <div class="entry">
+        <div>
+          <div class="entry-title">Detection of neuroendocrine prostate cancer through cell-free DNA methylation sequencing</div>
+          <div class="entry-org">Co-inventor · International Publication Number WO 2021/162981 A2</div>
+        </div>
+        <div class="entry-date">2021</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="cv-section">
+    <p class="sec-label">Programming</p>
+    <div class="sec-body">
+      <div class="skill-row">
+        <span class="skill-name">R</span>
+        <span class="skill-desc">Advanced — package development, efficient data exploration, performance optimization, machine learning, statistical learning, Bioconductor ecosystem</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Python</span>
+        <span class="skill-desc">Scientific libraries (pandas, numpy, scipy), bioinformatics (BioPython), machine learning (scikit-learn), deep learning (TensorFlow, Keras, PyTorch)</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Bash</span>
+        <span class="skill-desc">Scripting for pipeline management</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Other</span>
+        <span class="skill-desc">Git, LaTeX, C# (Unity), Octave / Matlab, C — Ubuntu, Windows</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Design</span>
+        <span class="skill-desc">Adobe suite, Inkscape, Affinity Designer, Procreate — proficient in image editing and vector graphics</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Languages -->
+  <section class="cv-section">
+    <p class="sec-label">Languages</p>
+    <div class="sec-body">
+      <div class="tag-row">
+        <span><strong style="color:var(--text)">Italian</strong> — mother tongue</span>
+        <span><strong style="color:var(--text)">English</strong> — C1</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Outreach -->
+  <section class="cv-section">
+    <p class="sec-label">Outreach &amp;<br>Leadership</p>
+    <div class="sec-body">
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Telegram Educational Contest — Award Winner</div>
+          <div class="entry-org">Placed 7th among over 7,000 entries with an educational quiz on cancer for mobile platforms</div>
+        </div>
+        <div class="entry-date">Aug 2020</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Science Communication Author — <em>La medicina in uno scatto</em></div>
+          <div class="entry-org">Italian website with more than 100k followers, promoting medical and scientific awareness</div>
+        </div>
+        <div class="entry-date">Mar 2016 – Sept 2017</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Seminar Assistant — Precision Medicine and Its Impact on Our Society</div>
+          <div class="entry-org">EFA 2020, Alpbach, Austria — Chairs: Dr M. El Enein (Charité Berlin), Dr M. Nasr (Ain Shams University)</div>
+          <div class="entry-note">Drafted and successfully proposed a one-week seminar introducing future policy makers to precision medicine.</div>
+        </div>
+        <div class="entry-date">Aug 2018</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Board Member &amp; IT Manager — Club Alpbach Trentino</div>
+          <div class="entry-org">Fundraising for scholarships, event planning, and team coordination</div>
+        </div>
+        <div class="entry-date">Aug 2017 – Nov 2018</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Student Representative — Center of Integrative Biology, UniTN</div>
+        </div>
+        <div class="entry-date">Nov 2016 – Nov 2018</div>
+      </div>
+
+      <div class="entry">
+        <div>
+          <div class="entry-title">Volunteering — VolontariInStrada</div>
+          <div class="entry-org">Weekly gatherings assisting homeless individuals</div>
+        </div>
+        <div class="entry-date">Feb 2019 – Jan 2020</div>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>
