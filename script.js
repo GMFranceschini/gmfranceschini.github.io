@@ -83,7 +83,7 @@ window.addEventListener('load', () => {
   canvas.style.height = '100%';
   canvas.style.pointerEvents = 'none';
   canvas.style.zIndex = '9999';
-  canvas.style.opacity = '0.05';
+  canvas.style.opacity = '0.032';
   document.body.appendChild(canvas);
 }());
 
