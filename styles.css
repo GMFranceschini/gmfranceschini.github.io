@@ -14,7 +14,12 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image: radial-gradient(
+    rgba(122, 107, 88, 0.16) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
   color: var(--text);
   font-family: "Karla", sans-serif;
   font-size: 1.08rem;
@@ -265,6 +270,18 @@ h3 {
   margin: 0 0 0 !important;
   font-size: 0.95rem;
   max-width: 58ch;
+}
+
+.grant-note {
+  margin: 0.6rem 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+  max-width: 58ch;
+}
+
+.grant-note em {
+  font-style: italic;
+  color: var(--accent);
 }
 
 /* ── Paper links ──────────────────────────────────────── */
