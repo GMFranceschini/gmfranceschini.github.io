@@ -1,13 +1,4 @@
 const themeToggle = document.getElementById('themeToggle');
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-
-function getSavedTheme() {
-  try {
-    return localStorage.getItem('theme');
-  } catch (e) {
-    return null;
-  }
-}
 
 function setSavedTheme(value) {
   try {
@@ -18,9 +9,7 @@ function setSavedTheme(value) {
 }
 
 function isDarkActive() {
-  const saved = getSavedTheme();
-  if (saved === 'dark' || saved === 'light') return saved === 'dark';
-  return prefersDark.matches;
+  return document.documentElement.getAttribute('data-theme') === 'dark';
 }
 
 function syncToggleState() {
@@ -36,10 +25,6 @@ if (themeToggle) {
   });
   syncToggleState();
 }
-
-prefersDark.addEventListener('change', () => {
-  if (!getSavedTheme()) syncToggleState();
-});
 
 const header = document.querySelector('.site-header');
 const menuButton = document.getElementById('menuButton');

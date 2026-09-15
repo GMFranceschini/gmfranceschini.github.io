@@ -14,10 +14,10 @@
     --bg:         #1B1712;
     --text:       #F0E9DE;
     --muted:      #AA9C8A;
-    --accent:     #C97C52;
+    --accent:     #5FA8A3;
     --rule:       #35302A;
     --header-bg:  rgba(27, 23, 18, 0.92);
-    --dot:        rgba(201, 124, 82, 0.11);
+    --dot:        rgba(95, 168, 163, 0.11);
   }
 }
 
@@ -25,10 +25,10 @@
   --bg:         #1B1712;
   --text:       #F0E9DE;
   --muted:      #AA9C8A;
-  --accent:     #C97C52;
+  --accent:     #5FA8A3;
   --rule:       #35302A;
   --header-bg:  rgba(27, 23, 18, 0.92);
-  --dot:        rgba(201, 124, 82, 0.11);
+  --dot:        rgba(95, 168, 163, 0.11);
 }
 
 /* ── Reset ────────────────────────────────────────────── */

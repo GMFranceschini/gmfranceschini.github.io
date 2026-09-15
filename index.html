@@ -13,9 +13,14 @@
     (function () {
       try {
         var saved = localStorage.getItem('theme');
+        var theme;
         if (saved === 'dark' || saved === 'light') {
-          document.documentElement.setAttribute('data-theme', saved);
+          theme = saved;
+        } else {
+          var hour = new Date().getHours();
+          theme = (hour >= 19 || hour < 7) ? 'dark' : 'light';
         }
+        document.documentElement.setAttribute('data-theme', theme);
       } catch (e) {}
     }());
   </script>
