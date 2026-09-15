@@ -1,8 +1,24 @@
 const themeToggle = document.getElementById('themeToggle');
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 
+function getSavedTheme() {
+  try {
+    return localStorage.getItem('theme');
+  } catch (e) {
+    return null;
+  }
+}
+
+function setSavedTheme(value) {
+  try {
+    localStorage.setItem('theme', value);
+  } catch (e) {
+    /* storage unavailable — theme still applies for this page view */
+  }
+}
+
 function isDarkActive() {
-  const saved = localStorage.getItem('theme');
+  const saved = getSavedTheme();
   if (saved === 'dark' || saved === 'light') return saved === 'dark';
   return prefersDark.matches;
 }
@@ -15,14 +31,14 @@ if (themeToggle) {
   themeToggle.addEventListener('click', () => {
     const next = isDarkActive() ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
+    setSavedTheme(next);
     syncToggleState();
   });
   syncToggleState();
 }
 
 prefersDark.addEventListener('change', () => {
-  if (!localStorage.getItem('theme')) syncToggleState();
+  if (!getSavedTheme()) syncToggleState();
 });
 
 const header = document.querySelector('.site-header');
