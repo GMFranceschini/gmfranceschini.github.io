@@ -1,3 +1,30 @@
+const themeToggle = document.getElementById('themeToggle');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+function isDarkActive() {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark' || saved === 'light') return saved === 'dark';
+  return prefersDark.matches;
+}
+
+function syncToggleState() {
+  if (themeToggle) themeToggle.setAttribute('aria-pressed', String(isDarkActive()));
+}
+
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const next = isDarkActive() ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    syncToggleState();
+  });
+  syncToggleState();
+}
+
+prefersDark.addEventListener('change', () => {
+  if (!localStorage.getItem('theme')) syncToggleState();
+});
+
 const header = document.querySelector('.site-header');
 const menuButton = document.getElementById('menuButton');
 const nav = document.getElementById('siteNav');

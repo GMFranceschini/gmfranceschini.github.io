@@ -1,10 +1,34 @@
 /* ── Tokens ───────────────────────────────────────────── */
 :root {
-  --bg:      #F5F3EE;
-  --text:    #111010;
-  --muted:   #706860;
-  --accent:  #7A6B58;
-  --rule:    #DDD9D1;
+  --bg:         #F5F3EE;
+  --text:       #111010;
+  --muted:      #706860;
+  --accent:     #7A6B58;
+  --rule:       #DDD9D1;
+  --header-bg:  rgba(245, 243, 238, 0.92);
+  --dot:        rgba(122, 107, 88, 0.16);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:         #1B1712;
+    --text:       #F0E9DE;
+    --muted:      #AA9C8A;
+    --accent:     #D3A86A;
+    --rule:       #35302A;
+    --header-bg:  rgba(27, 23, 18, 0.92);
+    --dot:        rgba(211, 168, 106, 0.10);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg:         #1B1712;
+  --text:       #F0E9DE;
+  --muted:      #AA9C8A;
+  --accent:     #D3A86A;
+  --rule:       #35302A;
+  --header-bg:  rgba(27, 23, 18, 0.92);
+  --dot:        rgba(211, 168, 106, 0.10);
 }
 
 /* ── Reset ────────────────────────────────────────────── */
@@ -16,7 +40,7 @@ body {
   margin: 0;
   background-color: var(--bg);
   background-image: radial-gradient(
-    rgba(122, 107, 88, 0.16) 1px,
+    var(--dot) 1px,
     transparent 1px
   );
   background-size: 22px 22px;
@@ -25,6 +49,7 @@ body {
   font-size: 1.08rem;
   line-height: 1.72;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 
@@ -89,11 +114,11 @@ h3 {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(245, 243, 238, 0.92);
+  background: var(--header-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
-  transition: border-color 0.4s;
+  transition: border-color 0.4s, background-color 0.3s;
 }
 
 .site-header.is-scrolled { border-bottom-color: var(--rule); }
@@ -195,6 +220,17 @@ h3 {
   object-fit: cover;
   object-position: top center;
   filter: grayscale(20%) contrast(1.02);
+  transition: filter 0.3s;
+}
+
+:root[data-theme="dark"] .hero-portrait img {
+  filter: grayscale(20%) contrast(1.02) brightness(0.9);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .hero-portrait img {
+    filter: grayscale(20%) contrast(1.02) brightness(0.9);
+  }
 }
 
 /* ── Sections ─────────────────────────────────────────── */
@@ -407,6 +443,33 @@ h3 {
   text-transform: none;
   user-select: none;
 }
+
+/* ── Theme toggle ─────────────────────────────────────── */
+.theme-toggle {
+  position: fixed;
+  top: 1.1rem;
+  right: 1.1rem;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  color: var(--text);
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.2s, color 0.2s;
+}
+
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+.theme-toggle svg { width: 1.05rem; height: 1.05rem; }
+
+.theme-toggle .icon-moon { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
 
 /* ── Reveal ───────────────────────────────────────────── */
 .reveal {
