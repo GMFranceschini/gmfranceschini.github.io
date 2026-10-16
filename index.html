@@ -7,211 +7,231 @@
   <title>Gian Marco Franceschini</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=Karla:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./terminal.css" />
   <script>
     (function () {
       try {
-        var saved = localStorage.getItem('theme');
-        var theme;
-        if (saved === 'dark' || saved === 'light') {
-          theme = saved;
+        var saved = localStorage.getItem('receipt-mode');
+        if (saved === 'crt' || saved === 'paper') {
+          document.documentElement.setAttribute('data-mode', saved);
         } else {
           var hour = new Date().getHours();
-          theme = (hour >= 19 || hour < 7) ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-mode', (hour >= 19 || hour < 7) ? 'crt' : 'paper');
         }
-        document.documentElement.setAttribute('data-theme', theme);
       } catch (e) {}
     }());
   </script>
 </head>
 <body>
 
-  <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle night mode" aria-pressed="false">
-    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="4.2" />
-      <path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7" />
-    </svg>
-    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M20 14.2A8.2 8.2 0 1 1 9.8 4a6.6 6.6 0 0 0 10.2 10.2z" />
-    </svg>
+  <button id="modeToggle" class="mode-toggle" type="button" aria-label="Toggle terminal mode" aria-pressed="false">
+    <span class="mode-toggle-label">[ CRT ]</span>
   </button>
 
-  <main>
+  <main class="receipt">
 
-    <section class="hero" id="home">
-      <div class="inner hero-layout">
-        <div class="hero-text">
-          <p class="label">Postdoctoral Researcher · University of Lausanne</p>
-          <h1>Gian Marco<br>Franceschini, Ph.D.</h1>
-          <p class="hero-lead">
-            Chromatin architecture and cancer plasticity.<br>
-            Quantitative genomics and method development.
-          </p>
-          <nav class="hero-links" aria-label="Quick links">
-            <a href="#research">Research</a>
-            <a href="./CV.pdf" target="_blank" rel="noopener noreferrer">CV</a>
-            <a href="#contact">Contact</a>
-          </nav>
-        </div>
-        <figure class="hero-portrait">
-          <img src="./GMF.webp" alt="Gian Marco Franceschini" />
-        </figure>
-      </div>
+    <div class="tear tear-top" aria-hidden="true"></div>
+
+    <header class="slip-head">
+      <pre class="logo" aria-hidden="true">      ___           ___           ___     
+     /\__\         /\  \         /\__\    
+    /:/ _/_       |::\  \       /:/ _/_   
+   /:/ /\  \      |:|:\  \     /:/ /\__\  
+  /:/ /::\  \   __|:|\:\  \   /:/ /:/  /  
+ /:/__\/\:\__\ /::::|_\:\__\ /:/_/:/  /   
+ \:\  \ /:/  / \:\~~\  \/__/ \:\/:/  /    
+  \:\  /:/  /   \:\  \        \::/__/     
+   \:\/:/  /     \:\  \        \:\  \     
+    \::/  /       \:\__\        \:\__\    
+     \/__/         \/__/         \/__/    </pre>
+      <h1>Gian Marco Franceschini, Ph.D.</h1>
+      <p class="sub">Computational biologist</p>
+      <div class="rule rule-double" aria-hidden="true"></div>
+      <dl class="meta">
+        <div><dt>ROLE</dt><dd>Postdoctoral Researcher</dd></div>
+        <div><dt>AFFIL</dt><dd>University of Lausanne</dd></div>
+        <div><dt>LAB</dt><dd>Prof. Giovanni Ciriello</dd></div>
+        <div><dt>FIELD</dt><dd>Chromatin architecture · cancer plasticity</dd></div>
+        <div><dt>ALSO</dt><dd>Quantitative genomics · method development</dd></div>
+      </dl>
+      <div class="rule" aria-hidden="true"></div>
+      <nav class="cmd-nav" aria-label="Quick links">
+        <a href="#about"><span class="prompt">$</span> about</a>
+        <a href="#research"><span class="prompt">$</span> research</a>
+        <a href="./CV.pdf" target="_blank" rel="noopener noreferrer"><span class="prompt">$</span> cv --pdf</a>
+        <a href="#contact"><span class="prompt">$</span> contact</a>
+      </nav>
+    </header>
+
+    <figure class="portrait">
+      <img src="./GMF.webp" alt="Gian Marco Franceschini" />
+      <figcaption>FIG. 1 — ME</figcaption>
+    </figure>
+
+    <section class="block" id="about">
+      <h2><span class="bracket">[</span> ABOUT <span class="bracket">]</span></h2>
+      <div class="rule" aria-hidden="true"></div>
+      <p>
+        I am a <strong>postdoctoral researcher</strong> working on chromatin architecture and
+        cancer plasticity under the supervision of Prof. Giovanni Ciriello at the
+        <a href="https://www.unil.ch" target="_blank" rel="noopener noreferrer">University of Lausanne</a>.
+        My current interests include method development and analysis to understand genome
+        compartmentalization and its influence on tumor evolution, with implications for
+        epigenetic therapies.
+      </p>
+      <p>
+        Until October 2023, I worked under Prof. Francesca Demichelis at UniTN (Trento, Italy),
+        investigating DNA methylation patterns in metastatic prostate cancer, focusing on
+        AR-negative subtypes and resulting in a liquid biopsy application. I also developed
+        computational methods to facilitate the discovery of novel epigenetic biomarkers.
+      </p>
+      <p>
+        I obtained a Ph.D. in Biomolecular Sciences from the University of Trento in January 2023.
+        My main scientific interest is the epigenome's role in enabling <strong>lineage plasticity</strong>
+        and <strong>treatment resistance</strong> in cancer, and how this connects to intrinsic
+        developmental programs and <strong>chromatin biology</strong>.
+      </p>
+      <div class="rule rule-dash" aria-hidden="true"></div>
+      <p class="aside">
+        OFF-DUTY &nbsp;drawing · electronic music · books · very casual photography ·
+        Magic: The Gathering
+      </p>
     </section>
 
-    <section class="section" id="about">
-      <div class="inner two-col">
-        <p class="label col-label">About</p>
-        <div class="col-body">
-          <p>
-            I am a <strong>postdoctoral researcher</strong> working on chromatin architecture and
-            cancer plasticity under the supervision of Prof. Giovanni Ciriello at the
-            <a href="https://www.unil.ch" target="_blank" rel="noopener noreferrer">University of Lausanne</a>.
-            My current interests include method development and analysis to understand genome
-            compartmentalization and its influence on tumor evolution, with implications for epigenetic therapies.
-          </p>
-          <p>
-            Until October 2023, I worked under Prof. Francesca Demichelis at UniTN (Trento, Italy),
-            investigating DNA methylation patterns in metastatic prostate cancer, focusing on AR-negative
-            subtypes and resulting in a liquid biopsy application. I also developed computational methods
-            to facilitate the discovery of novel epigenetic biomarkers.
-          </p>
-          <p>
-            I obtained a Ph.D. in Biomolecular Sciences from the University of Trento in January 2023.
-            My main scientific interest is the epigenome's role in enabling <strong>lineage plasticity</strong>
-            and <strong>treatment resistance</strong> in cancer, and how this connects to intrinsic
-            developmental programs and <strong>chromatin biology</strong>.
-          </p>
-          <p class="aside">
-            Beyond the lab — drawing, electronic music, books, very casual photography, and
-            Magic: The Gathering fan.
-          </p>
-        </div>
-      </div>
-    </section>
+    <section class="block" id="research">
+      <h2><span class="bracket">[</span> RESEARCH <span class="bracket">]</span></h2>
+      <div class="rule" aria-hidden="true"></div>
 
-    <section class="section" id="research">
-      <div class="inner two-col">
-        <p class="label col-label">Research</p>
-        <div class="col-body">
-          <ol class="project-list">
+      <ol class="items">
 
-            <li class="project-item reveal">
-              <div class="project-header">
-                <h3>Chromatin architecture &amp; cancer plasticity</h3>
-                <span class="project-tag">Ongoing · UNIL</span>
-              </div>
-              <p>
-                Method development and analysis to understand genome compartmentalization and its
-                influence on tumor evolution, with implications for epigenetic therapies.
-              </p>
-              <p class="grant-note">
-                Supported by the Novartis Freenovation Grant (CHF&nbsp;198,000, Nov 2025) —
-                <em>Multiscale chromatin blueprints to decipher and forecast epigenetic perturbations for cancer therapy</em>
-              </p>
-              <ul class="paper-list">
-                <li>
-                  <a href="https://doi.org/10.1038/s41568-026-00969-1" target="_blank" rel="noopener noreferrer">
-                    Origins and consequences of oncogenic 3D chromatin remodeling
-                    <span class="venue">Nat Rev Cancer · 2026</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://doi.org/10.1038/s41592-026-03100-2" target="_blank" rel="noopener noreferrer">
-                    TADShop: systematic benchmarking and identification of topologically associating domains
-                    <span class="venue">Nat Methods · 2026 · co-author</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://doi.org/10.1038/s41467-026-72326-7" target="_blank" rel="noopener noreferrer">
-                    HaploC-tools reveal haplotype-specific chromosome conformation and chromatin states
-                    <span class="venue">Nat Commun · 2026 · co-author</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <li class="project-item reveal">
-              <div class="project-header">
-                <h3>DNA methylation in metastatic prostate cancer</h3>
-                <span class="project-tag">Clinical application · UniTN</span>
-              </div>
-              <p>
-                Investigation of methylation patterns in AR-negative subtypes, resulting in a liquid
-                biopsy application for non-invasive monitoring of metastatic disease.
-              </p>
-              <ul class="paper-list">
-                <li>
-                  <a href="https://doi.org/10.1158/2159-8290.CD-23-0754" target="_blank" rel="noopener noreferrer">
-                    Noninvasive detection of neuroendocrine prostate cancer through targeted cell-free DNA methylation
-                    <span class="venue">Cancer Discov · 2024</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://doi.org/10.1172/JCI130887" target="_blank" rel="noopener noreferrer">
-                    Genome-wide plasma DNA methylation features of metastatic prostate cancer
-                    <span class="venue">J Clin Invest · 2020</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <li class="project-item reveal">
-              <div class="project-header">
-                <h3>Epigenetic biomarker discovery</h3>
-                <span class="project-tag">Methods · UniTN</span>
-              </div>
-              <p>
-                Computational approaches for large-scale epigenomic data interpretation
-                and novel biomarker identification.
-              </p>
-              <ul class="paper-list">
-                <li>
-                  <a href="https://doi.org/10.1038/s42003-021-02761-3" target="_blank" rel="noopener noreferrer">
-                    Charting differentially methylated regions in cancer with Rocker-meth
-                    <span class="venue">Commun Biol · 2021</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-          </ol>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="inner two-col">
-        <p class="label col-label">Contact</p>
-        <div class="col-body contact-body">
-          <div>
-            <p class="contact-name">Gian Marco Franceschini</p>
-            <p class="contact-place">University of Lausanne · Lausanne, Switzerland</p>
-            <a class="contact-email" href="mailto:Gianmarco.Franceschini@unil.ch">
-              Gianmarco.Franceschini@unil.ch
-            </a>
+        <li class="item">
+          <div class="item-head">
+            <span class="qty">01</span>
+            <h3>Chromatin architecture &amp; cancer plasticity</h3>
+            <span class="tag">ONGOING / UNIL</span>
           </div>
-          <ul class="ext-links">
-            <li><a href="https://github.com/gmfranceschini" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            <li><a href="https://scholar.google.it/citations?user=wpAFYbkAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
-            <li><a href="./CV.pdf" target="_blank" rel="noopener noreferrer">CV (PDF)</a></li>
+          <p>
+            Method development and analysis to understand genome compartmentalization and its
+            influence on tumor evolution, with implications for epigenetic therapies.
+          </p>
+          <p class="grant">
+            GRANT &nbsp;Novartis Freenovation — CHF&nbsp;198,000 — NOV 2025<br>
+            <em>Multiscale chromatin blueprints to decipher and forecast epigenetic
+            perturbations for cancer therapy</em>
+          </p>
+          <ul class="papers">
+            <li>
+              <a href="https://doi.org/10.1038/s41568-026-00969-1" target="_blank" rel="noopener noreferrer">
+                <span class="paper-title">Origins and consequences of oncogenic 3D chromatin remodeling</span>
+                <span class="leader" aria-hidden="true"></span>
+                <span class="venue">Nat Rev Cancer 2026</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://doi.org/10.1038/s41592-026-03100-2" target="_blank" rel="noopener noreferrer">
+                <span class="paper-title">TADShop: systematic benchmarking and identification of topologically associating domains</span>
+                <span class="leader" aria-hidden="true"></span>
+                <span class="venue">Nat Methods 2026 · co-auth</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://doi.org/10.1038/s41467-026-72326-7" target="_blank" rel="noopener noreferrer">
+                <span class="paper-title">HaploC-tools reveal haplotype-specific chromosome conformation and chromatin states</span>
+                <span class="leader" aria-hidden="true"></span>
+                <span class="venue">Nat Commun 2026 · co-auth</span>
+              </a>
+            </li>
           </ul>
-        </div>
+        </li>
+
+        <li class="item">
+          <div class="item-head">
+            <span class="qty">02</span>
+            <h3>DNA methylation in metastatic prostate cancer</h3>
+            <span class="tag">CLINICAL / UNITN</span>
+          </div>
+          <p>
+            Investigation of methylation patterns in AR-negative subtypes, resulting in a liquid
+            biopsy application for non-invasive monitoring of metastatic disease.
+          </p>
+          <ul class="papers">
+            <li>
+              <a href="https://doi.org/10.1158/2159-8290.CD-23-0754" target="_blank" rel="noopener noreferrer">
+                <span class="paper-title">Noninvasive detection of neuroendocrine prostate cancer through targeted cell-free DNA methylation</span>
+                <span class="leader" aria-hidden="true"></span>
+                <span class="venue">Cancer Discov 2024</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://doi.org/10.1172/JCI130887" target="_blank" rel="noopener noreferrer">
+                <span class="paper-title">Genome-wide plasma DNA methylation features of metastatic prostate cancer</span>
+                <span class="leader" aria-hidden="true"></span>
+                <span class="venue">J Clin Invest 2020</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="item">
+          <div class="item-head">
+            <span class="qty">03</span>
+            <h3>Epigenetic biomarker discovery</h3>
+            <span class="tag">METHODS / UNITN</span>
+          </div>
+          <p>
+            Computational approaches for large-scale epigenomic data interpretation
+            and novel biomarker identification.
+          </p>
+          <ul class="papers">
+            <li>
+              <a href="https://doi.org/10.1038/s42003-021-02761-3" target="_blank" rel="noopener noreferrer">
+                <span class="paper-title">Charting differentially methylated regions in cancer with Rocker-meth</span>
+                <span class="leader" aria-hidden="true"></span>
+                <span class="venue">Commun Biol 2021</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+      </ol>
+
+      <div class="rule rule-dash" aria-hidden="true"></div>
+      <div class="totals">
+        <div class="grand"><span>PH.D. CONFERRED</span><span class="leader" aria-hidden="true"></span><span>JAN 2023</span></div>
       </div>
     </section>
+
+    <section class="block" id="contact">
+      <h2><span class="bracket">[</span> CONTACT <span class="bracket">]</span></h2>
+      <div class="rule" aria-hidden="true"></div>
+      <dl class="meta">
+        <div><dt>NAME</dt><dd>Gian Marco Franceschini</dd></div>
+        <div><dt>PLACE</dt><dd>University of Lausanne · Lausanne, CH</dd></div>
+        <div><dt>MAIL</dt><dd><a href="mailto:Gianmarco.Franceschini@unil.ch">Gianmarco.Franceschini@unil.ch</a></dd></div>
+        <div><dt>CODE</dt><dd><a href="https://github.com/gmfranceschini" target="_blank" rel="noopener noreferrer">github.com/gmfranceschini</a></dd></div>
+        <div><dt>CITED</dt><dd><a href="https://scholar.google.it/citations?user=wpAFYbkAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a></dd></div>
+        <div><dt>CV</dt><dd><a href="./CV.pdf" target="_blank" rel="noopener noreferrer">CV.pdf</a></dd></div>
+      </dl>
+    </section>
+
+    <footer class="slip-foot">
+      <div class="rule rule-double" aria-hidden="true"></div>
+      <p class="thanks">* * *&nbsp; THANK YOU FOR READING &nbsp;* * *</p>
+      <p class="stamp">
+        TERMINAL EDITION · NO. <span id="serial">0000</span><br>
+        PRINTED <span id="printed">—</span>
+      </p>
+      <div class="barcode" aria-hidden="true"></div>
+      <p class="barcode-num" aria-hidden="true">GMF &nbsp;0 00000 <span id="year">----</span> 4</p>
+      <p class="caret-line"><span class="prompt">$</span> <span class="caret" aria-hidden="true"></span></p>
+    </footer>
+
+    <div class="tear tear-bottom" aria-hidden="true"></div>
 
   </main>
 
-  <footer class="site-footer">
-    <div class="inner footer-row">
-      <span>Gian Marco Franceschini</span>
-      <span class="ornament">❧</span>
-      <span id="year"></span>
-    </div>
-  </footer>
-
-  <script src="./script.js"></script>
+  <script src="./terminal.js"></script>
 
 </body>
 </html>
