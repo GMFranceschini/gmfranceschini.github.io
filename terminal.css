@@ -67,7 +67,7 @@ a { color: inherit; }
 
 /* ── The slip ─────────────────────────────────────────── */
 .receipt {
-  width: min(680px, 94vw);
+  width: min(860px, 94vw);
   margin: 0 auto;
   background: var(--paper);
   box-shadow: var(--sheet-shadow);
@@ -116,17 +116,6 @@ a { color: inherit; }
   text-align: center;
 }
 
-.logo {
-  display: inline-block;
-  margin: 0 auto 1rem;
-  font-size: clamp(0.44rem, 2vw, 0.74rem);
-  line-height: 1;
-  letter-spacing: 0;
-  text-align: left;
-  white-space: pre;
-  color: var(--ink);
-  text-shadow: var(--glow);
-}
 
 h1 {
   margin: 0;
