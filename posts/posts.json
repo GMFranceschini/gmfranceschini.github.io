@@ -1,0 +1,10 @@
+[
+  {
+    "slug": "loki-literature-radar",
+    "title": "A literature radar that runs on my laptop",
+    "date": "2026-11-20",
+    "tags": ["tools", "workflow"],
+    "summary": "Loki: new PubMed and bioRxiv papers, scored against topics I write in prose, ranked locally.",
+    "file": "loki-literature-radar.md"
+  }
+]
