@@ -1,4 +1,4 @@
-I think I haven't found a sarisfying paper recommendation system in year.
+I think I haven't found a satisfying paper recommendation system in years.
 So I designed a minimal tool: [Loki](https://github.com/GMFranceschini/loki). It fetches new
 PubMed, bioRxiv and medRxiv records once a day, scores them on topic relevance and journal
 impact, and ranks them into three digests — day, week and month. It serves them on
